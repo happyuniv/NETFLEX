@@ -1,42 +1,39 @@
 import styled from 'styled-components';
-import Navbar from './components/Navbar/Navbar';
+import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import MovieContents, { props } from './components/MovieContents/MovieContents';
 import { useCallback, useEffect, useState } from 'react';
+import api from './api';
 
 export type MovieDataType = {
   id: number;
   title: string;
-  year: number;
-  rating: number;
-  medium_cover_image: string;
+  overview: string;
+  release_date: number;
+  poster_path: string;
+  backdrop_path: string;
 };
 
-export type category = 'download_count' | 'rating' | 'year';
-const Wrapper = styled.main`
-  /* width: 100%;
-  height: 100%; */
-`;
+export type category = 'popular' | 'top_rated' | 'upcoming';
+
+const Container = styled.div``;
 
 const App = () => {
-  console.log('renderd!');
   useEffect(() => {
-    getMovieData('download_count');
+    getMovieData(category);
   }, []);
-  const [movies, setMovies] = useState<MovieDataType[]>([]);
-  const [category, setCateogry] = useState<category>('download_count');
 
-  const getMovieData = async (category: string) => {
+  const [movies, setMovies] = useState<MovieDataType[]>([]);
+  const [category, setCateogry] = useState<category>('popular');
+
+  const getMovieData = async (category: category) => {
     const storedMovies = sessionStorage.getItem(category);
     if (storedMovies) {
       setMovies(JSON.parse(storedMovies!));
       return;
     }
-    const res = await fetch(
-      `https://yts.mx/api/v2/list_movies.json?sort_by=${category}`
-    );
-    const result = await res.json();
-    const movieData = result.data.movies;
+    const data = await api.fetchCategory(category);
+    const movieData = data.results;
     setMovies(movieData);
     sessionStorage.setItem(category, JSON.stringify(movieData));
   };
@@ -47,11 +44,13 @@ const App = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Navbar />
-      <Sidebar selectCategory={selectCategory} />
-      <MovieContents movies={movies} category={category} />
-    </Wrapper>
+    <>
+      <Container>
+        <Header />
+        <Sidebar selectCategory={selectCategory} />
+        <MovieContents movies={movies} category={category} />
+      </Container>
+    </>
   );
 };
 

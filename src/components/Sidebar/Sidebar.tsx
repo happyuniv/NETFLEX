@@ -8,7 +8,7 @@ import { category } from '../../App';
 type props = {
   selectCategory: (category: category) => void;
 };
-const Wrapper = styled.aside`
+const Container = styled.nav`
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -47,20 +47,22 @@ const Wrapper = styled.aside`
 
 const Sidebar = ({ selectCategory }: props) => {
   return (
-    <Wrapper>
-      <button onClick={() => selectCategory('download_count')}>
-        <img src={Popular} alt='' />
-        <p>Popular</p>
-      </button>
-      <button onClick={() => selectCategory('rating')}>
-        <img src={TopRate} alt='' />
-        <p>TopRate</p>
-      </button>
-      <button onClick={() => selectCategory('year')}>
-        <img src={Latest} alt='' />
-        <p>Latest</p>
-      </button>
-    </Wrapper>
+    <>
+      <Container>
+        <button onClick={() => selectCategory('popular')}>
+          <img src={Popular} alt='' />
+          <p>Popular</p>
+        </button>
+        <button onClick={() => selectCategory('top_rated')}>
+          <img src={TopRate} alt='' />
+          <p>TopRate</p>
+        </button>
+        <button onClick={() => selectCategory('upcoming')}>
+          <img src={Latest} alt='' />
+          <p>Upcoming</p>
+        </button>
+      </Container>
+    </>
   );
 };
 

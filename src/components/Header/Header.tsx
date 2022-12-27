@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import SearchMovie from "./SearchMovie";
+import styled from 'styled-components';
+import Search from './Search';
 
-const Wrapper = styled.nav`
+const Container = styled.header`
   display: flex;
   position: fixed;
   justify-content: flex-start;
@@ -20,13 +20,15 @@ const Logo = styled.h2`
   color: #77c6ee;
 `;
 
-const Navbar = () => {
+const Header = () => {
   return (
-    <Wrapper>
-      <Logo>NETFLEX</Logo>
-      <SearchMovie />
-    </Wrapper>
+    <>
+      <Container>
+        <Logo>NETFLEX</Logo>
+        <Search />
+      </Container>
+    </>
   );
 };
 
-export default Navbar;
+export default Header;

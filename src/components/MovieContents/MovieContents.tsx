@@ -8,17 +8,19 @@ export type props = {
   category: category;
 };
 
-const Wrapper = styled.section`
+const Container = styled.main`
   /* min-height: 100vh; */
   margin-top: 70px;
   margin-left: 80px;
   background-color: #242a30;
 `;
 const MovieContents = ({ movies, category }: props) => (
-  <Wrapper>
-    <MovieScreen />
-    <MovieList movies={movies} category={category} />
-  </Wrapper>
+  <>
+    <Container>
+      <MovieScreen />
+      <MovieList movies={movies} category={category} />
+    </Container>
+  </>
 );
 
 export default MovieContents;

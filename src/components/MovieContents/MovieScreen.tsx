@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import ScreenImage from "../../assets/screen.jpg";
+import React from 'react';
+import styled from 'styled-components';
+import ScreenImage from '../../assets/screen.jpg';
 
-const Wrapper = styled.article``;
+const Container = styled.article``;
 
 const Screen = styled.div`
   height: 50vh;
@@ -18,11 +18,11 @@ const Screen = styled.div`
 `;
 
 const MovieScreen = () => (
-  <Wrapper>
-    <Screen>
-      <p></p>
-    </Screen>
-  </Wrapper>
+  <>
+    <Container>
+      <Screen></Screen>
+    </Container>
+  </>
 );
 
 export default React.memo(MovieScreen);

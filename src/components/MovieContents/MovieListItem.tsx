@@ -5,28 +5,32 @@ type props = {
   movie: MovieDataType;
 };
 
-const Wrapper = styled.div`
+const Container = styled.article`
   position: relative;
-  max-width: 15rem;
-
   padding: 2rem;
-
-  p {
-    position: absolute;
-    top: 10%;
-  }
+  width: 20rem;
+  height: 30rem;
 `;
 
 const Poster = styled.img`
+  width: 100%;
+  height: 100%;
   box-shadow: 0px 0px 20px #000;
 `;
 
+const Date = styled.p``;
+const Title = styled.p``;
+
 const MovieListItem = ({ movie }: props) => (
-  <Wrapper>
-    <Poster src={movie.medium_cover_image} alt='' />
-    <h6>{movie.year}</h6>
-    <h5>{movie.title}</h5>
-  </Wrapper>
+  <>
+    <Container>
+      <Poster
+        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+      />
+      <Date>{movie.release_date}</Date>
+      <Title>{movie.title}</Title>
+    </Container>
+  </>
 );
 
 export default MovieListItem;
