@@ -18,6 +18,12 @@ const api = {
     );
     return respond(res);
   },
+  fetchMovieVideo: async (id: number) => {
+    const res = await fetch(
+      `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`
+    );
+    return respond(res);
+  },
 };
 
 export default api;

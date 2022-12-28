@@ -6,13 +6,13 @@ const Container = styled.section`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 2rem 2rem;
-  color: white;
 `;
 
-const Category = styled.h1`
+const Category = styled.h2`
+  padding: 3rem;
   width: 100%;
   color: #77c6ee;
+  font-size: 2.5rem;
 `;
 
 const categoryMatch = {

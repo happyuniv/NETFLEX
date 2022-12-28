@@ -2,17 +2,28 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   position: absolute;
-  left: calc(50% + 50px);
+  left: 50%;
   transform: translateX(-50%);
-  width: 8rem;
-  height: 2rem;
+  width: 15rem;
+  height: 3.5rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 1.6rem;
+  font-size: 1.6rem;
+  text-align: center;
   outline: none;
   opacity: 0.9;
-  text-align: center;
-  /* background-color: inherit; */
-  /* background-color: #c9cdd0; */
+  transition: all 1s;
+
+  &:hover {
+    ::placeholder {
+      color: white;
+    }
+    background-color: #776d6d77;
+  }
+
+  &:focus {
+    background-color: white;
+  }
 `;
 
 const Search = () => {

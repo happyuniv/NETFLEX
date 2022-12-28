@@ -9,15 +9,14 @@ export type props = {
 };
 
 const Container = styled.main`
-  /* min-height: 100vh; */
-  margin-top: 70px;
-  margin-left: 80px;
+  margin-top: 7rem;
+  margin-left: 8rem;
   background-color: #242a30;
 `;
 const MovieContents = ({ movies, category }: props) => (
   <>
     <Container>
-      <MovieScreen />
+      <MovieScreen movies={movies} />
       <MovieList movies={movies} category={category} />
     </Container>
   </>

@@ -16,9 +16,12 @@ export type MovieDataType = {
 
 export type category = 'popular' | 'top_rated' | 'upcoming';
 
-const Container = styled.div``;
+const Container = styled.div`
+  min-width: 40rem;
+`;
 
 const App = () => {
+  document.cookie = 'crossCookie=bar; SameSite=None; Secure';
   useEffect(() => {
     getMovieData(category);
   }, []);
@@ -27,11 +30,6 @@ const App = () => {
   const [category, setCateogry] = useState<category>('popular');
 
   const getMovieData = async (category: category) => {
-    const storedMovies = sessionStorage.getItem(category);
-    if (storedMovies) {
-      setMovies(JSON.parse(storedMovies!));
-      return;
-    }
     const data = await api.fetchCategory(category);
     const movieData = data.results;
     setMovies(movieData);
@@ -39,7 +37,9 @@ const App = () => {
   };
 
   const selectCategory = useCallback((category: category) => {
-    getMovieData(category);
+    const storedMovies = sessionStorage.getItem(category);
+    if (storedMovies) setMovies(JSON.parse(storedMovies!));
+    else getMovieData(category);
     setCateogry(category);
   }, []);
 

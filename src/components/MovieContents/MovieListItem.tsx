@@ -6,20 +6,26 @@ type props = {
 };
 
 const Container = styled.article`
-  position: relative;
   padding: 2rem;
-  width: 20rem;
-  height: 30rem;
+  width: 30rem;
+  height: auto;
+  color: white;
+  font-size: 2rem;
 `;
 
 const Poster = styled.img`
   width: 100%;
-  height: 100%;
+  height: 40rem;
   box-shadow: 0px 0px 20px #000;
 `;
 
-const Date = styled.p``;
-const Title = styled.p``;
+const Date = styled.p`
+  opacity: 0.7;
+`;
+const Title = styled.p`
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+`;
 
 const MovieListItem = ({ movie }: props) => (
   <>

@@ -8,16 +8,16 @@ const Container = styled.header`
   align-items: center;
   top: 0;
   width: 100%;
-  height: 70px;
+  height: 7rem;
+  font-size: 1.6rem;
   background-color: black;
-  opacity: 90%;
   z-index: 1;
 `;
 
-const Logo = styled.h2`
-  margin-left: 10px;
-
+const Logo = styled.h1`
+  margin-left: 1rem;
   color: #77c6ee;
+  font-size: 2.5rem;
 `;
 
 const Header = () => {

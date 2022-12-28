@@ -13,54 +13,52 @@ const Container = styled.nav`
   position: fixed;
   flex-direction: column;
   align-items: center;
-  top: 70px;
-  padding-top: 20px;
-  width: 80px;
+  width: 8rem;
   height: 100%;
   background-color: #3b4956;
+`;
 
-  button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 40px;
-    width: 100%;
-    border: none;
-    color: white;
-    background-color: transparent;
-    /* background-color: rgba(22, 2, 147, 0.508); */
+const Button = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  width: 100%;
+  border: none;
+  color: white;
+  background-color: transparent;
 
-    &:hover {
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: #80808085;
   }
+`;
 
-  img {
-    width: 30px;
-  }
+const ButtonImage = styled.img`
+  width: 3rem;
+`;
 
-  p {
-    margin-top: 5px;
-    font-size: 13px;
-  }
+const Title = styled.span`
+  margin-top: 1rem;
+  font-size: 1.3rem;
 `;
 
 const Sidebar = ({ selectCategory }: props) => {
   return (
     <>
       <Container>
-        <button onClick={() => selectCategory('popular')}>
-          <img src={Popular} alt='' />
-          <p>Popular</p>
-        </button>
-        <button onClick={() => selectCategory('top_rated')}>
-          <img src={TopRate} alt='' />
-          <p>TopRate</p>
-        </button>
-        <button onClick={() => selectCategory('upcoming')}>
-          <img src={Latest} alt='' />
-          <p>Upcoming</p>
-        </button>
+        <Button onClick={() => selectCategory('popular')}>
+          <ButtonImage src={Popular} />
+          <Title>Popular</Title>
+        </Button>
+        <Button onClick={() => selectCategory('top_rated')}>
+          <ButtonImage src={TopRate} />
+          <Title>TopRate</Title>
+        </Button>
+        <Button onClick={() => selectCategory('upcoming')}>
+          <ButtonImage src={Latest} />
+          <Title>Upcoming</Title>
+        </Button>
       </Container>
     </>
   );
