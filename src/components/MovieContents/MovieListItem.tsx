@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { IMAGE_BASE_URL } from '../../api';
 import { MovieDataType } from '../../App';
 
 type props = {
   movie: MovieDataType;
+  setMovie: (movie: MovieDataType) => void;
 };
 
 const Container = styled.article`
@@ -13,10 +15,20 @@ const Container = styled.article`
   font-size: 2rem;
 `;
 
+const bounce = keyframes`
+  to {
+    transform: translateY(-2rem);
+  }
+`;
 const Poster = styled.img`
   width: 100%;
   height: 40rem;
   box-shadow: 0px 0px 20px #000;
+  cursor: pointer;
+
+  &:hover {
+    animation: ${bounce} 0.5s forwards;
+  }
 `;
 
 const Date = styled.p`
@@ -27,16 +39,18 @@ const Title = styled.p`
   font-size: 1.4rem;
 `;
 
-const MovieListItem = ({ movie }: props) => (
+const MovieListItem = ({ movie, setMovie }: props) => (
   <>
     <Container>
       <Poster
-        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+        src={`${IMAGE_BASE_URL}/${movie.poster_path}`}
+        onClick={() => {
+          setMovie(movie);
+        }}
       />
-      <Date>{movie.release_date}</Date>
+      <Date>{movie.release_date.split('-')[0]}</Date>
       <Title>{movie.title}</Title>
     </Container>
   </>
 );
-
 export default MovieListItem;

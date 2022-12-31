@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+type props = {
+  searchMovie: (keyword: string) => void;
+};
+
+const Form = styled.form`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+`;
+
+const Input = styled.input`
   width: 15rem;
   height: 3.5rem;
   border: none;
@@ -26,20 +34,31 @@ const Input = styled.input`
   }
 `;
 
-const Search = () => {
+const Search = ({ searchMovie }: props) => {
+  const [keyword, setKeyword] = useState('');
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    searchMovie(keyword);
+  };
   return (
     <>
-      <Input
-        type='text'
-        placeholder='Search movie'
-        onFocus={(e) => {
-          e.target.value = '';
-          e.target.placeholder = '';
-        }}
-        onBlur={(e) => {
-          e.target.placeholder = 'Search movie';
-        }}
-      />
+      <Form onSubmit={handleSearch}>
+        <Input
+          type='text'
+          placeholder='Search movie'
+          onFocus={(e) => {
+            e.target.value = '';
+            e.target.placeholder = '';
+          }}
+          onBlur={(e) => {
+            e.target.placeholder = 'Search movie';
+          }}
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
+        />
+      </Form>
     </>
   );
 };

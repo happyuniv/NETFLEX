@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import api from '../../api';
+import api, { IMAGE_BASE_URL } from '../../api';
 import { MovieDataType } from '../../App';
 import Youtube from 'react-youtube';
 
@@ -16,9 +16,10 @@ const Container = styled.div`
   flex: 1;
   padding: 1rem;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 80rem) {
     order: 1;
     flex-basis: 100%;
+    padding: 0 5rem;
   }
 `;
 const YoutubeContainer = styled.div`
@@ -27,32 +28,38 @@ const YoutubeContainer = styled.div`
   }
 `;
 
-const Poster = styled.div``;
+const Poster = styled.img`
+  width: 100%;
+  height: 100%;
+`;
 
 const ScreenContents = ({ movies, screenMovie, setScreenMovie }: props) => {
   useEffect(() => {
     const getMovieVideo = async () => {
       try {
         const videos = await api.fetchMovieVideo(screenMovie.id);
-        const trailerId = videos.results.find(
+        const trailer = videos.results.find(
           (video: { type: string }) => video.type === 'Trailer'
-        ).key;
-        setVideoId(trailerId);
+        );
+        if (trailer) setVideoId(trailer.key);
+        else changeMovie();
       } catch (e) {
         console.log(e);
       }
     };
-    getMovieVideo();
+
+    const videoTimer = setTimeout(getMovieVideo, 5000);
+
+    return () => clearTimeout(videoTimer);
   }, [screenMovie.id]);
 
   const [videoId, setVideoId] = useState('');
-
   const videoOptions = {
     width: '100%',
-    height: 'auto',
+    height: '100%',
     playerVars: {
       autoplay: 1,
-      controls: 0,
+      controls: 1,
       rel: 0,
       showinfo: 0,
       mute: 1,
@@ -60,15 +67,25 @@ const ScreenContents = ({ movies, screenMovie, setScreenMovie }: props) => {
     },
   };
 
+  const changeMovie = () => {
+    setVideoId('');
+    const randomMovie = movies[Math.round(Math.random() * movies.length)];
+    setScreenMovie(randomMovie);
+  };
+
   return (
     <>
       <Container>
         {videoId ? (
           <YoutubeContainer>
-            <Youtube videoId={videoId} opts={videoOptions} />
+            <Youtube
+              videoId={videoId}
+              opts={videoOptions}
+              onEnd={changeMovie}
+            />
           </YoutubeContainer>
         ) : (
-          <Poster>{screenMovie.title}</Poster>
+          <Poster src={`${IMAGE_BASE_URL}/${screenMovie.backdrop_path}`} />
         )}
       </Container>
     </>

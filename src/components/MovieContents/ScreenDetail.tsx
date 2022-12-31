@@ -9,7 +9,7 @@ const Container = styled.div`
   flex: 1;
   padding: 5rem;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 80rem) {
     order: 2;
   }
 `;
@@ -32,7 +32,7 @@ const ScreenDetail = ({ screenMovie }: props) => {
     <>
       <Container>
         <Title>{screenMovie.title}</Title>
-        <Year>{screenMovie.release_date}</Year>
+        <Year>{screenMovie.release_date.split('-')[0]}</Year>
         <OverView>{screenMovie.overview}</OverView>
       </Container>
     </>

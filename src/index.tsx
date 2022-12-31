@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
   }
-
 `;
 
 const root = ReactDOM.createRoot(

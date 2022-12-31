@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import { MovieDataType } from '../../App';
 import { props } from './MovieContents';
+import MovieDetail from './MovieDetail';
 import MovieListItem from './MovieListItem';
 
 const Container = styled.section`
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
+  min-height: 100vh;
 `;
 
 const Category = styled.h2`
@@ -15,20 +19,35 @@ const Category = styled.h2`
   font-size: 2.5rem;
 `;
 
+const EmptyResult = styled.div`
+  color: white;
+  font-size: 2.5rem;
+`;
+
+const Keyword = styled(Category)``;
+
 const categoryMatch = {
   popular: 'Poplular',
   top_rated: 'Top Rate',
   upcoming: 'Upcoming',
 };
 
-const MovieList = ({ movies, category }: props) => {
+const MovieList = ({ movies, category, keyword }: props) => {
+  const [movie, setMovie] = useState<null | MovieDataType>(null);
+
   return (
     <>
       <Container>
-        <Category>{categoryMatch[category]}</Category>
-        {movies.map((movie) => (
-          <MovieListItem key={movie.id} movie={movie} />
-        ))}
+        {category && <Category>{categoryMatch[category]}</Category>}
+        {keyword && <Keyword>{`Search results for "${keyword}"`}</Keyword>}
+        {movies.length ? (
+          movies.map((movie) => (
+            <MovieListItem key={movie.id} movie={movie} setMovie={setMovie} />
+          ))
+        ) : (
+          <EmptyResult>Search result not found</EmptyResult>
+        )}
+        {movie && <MovieDetail movie={movie} setMovie={setMovie} />}
       </Container>
     </>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Popular from '../../assets/popular.svg';
-import Latest from '../../assets/latest.svg';
+import Upcoming from '../../assets/upcoming.svg';
 import TopRate from '../../assets/top-rate.svg';
 import React from 'react';
 import { category } from '../../App';
@@ -10,9 +10,9 @@ type props = {
 };
 const Container = styled.nav`
   display: flex;
-  position: fixed;
   flex-direction: column;
   align-items: center;
+  position: fixed;
   width: 8rem;
   height: 100%;
   background-color: #3b4956;
@@ -56,7 +56,7 @@ const Sidebar = ({ selectCategory }: props) => {
           <Title>TopRate</Title>
         </Button>
         <Button onClick={() => selectCategory('upcoming')}>
-          <ButtonImage src={Latest} />
+          <ButtonImage src={Upcoming} />
           <Title>Upcoming</Title>
         </Button>
       </Container>
