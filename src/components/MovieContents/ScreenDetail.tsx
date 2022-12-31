@@ -9,7 +9,7 @@ const Container = styled.div`
   flex: 1;
   padding: 5rem;
 
-  @media screen and (max-width: 80rem) {
+  @media screen and (max-width: 800px) {
     order: 2;
   }
 `;

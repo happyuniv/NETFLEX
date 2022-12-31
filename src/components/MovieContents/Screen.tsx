@@ -11,7 +11,7 @@ const Container = styled.section`
   color: white;
   background-color: black;
 
-  @media screen and (max-width: 80rem) {
+  @media screen and (max-width: 800px) {
     flex-wrap: wrap;
   }
 `;

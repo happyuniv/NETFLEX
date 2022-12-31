@@ -78,17 +78,17 @@ const PosterWrapper = styled.div`
   flex: 1;
   display: flex;
 
-  @media screen and (max-width: 90rem) {
+  @media screen and (max-width: 900px) {
     justify-content: center;
   }
 `;
 const Poster = styled.img`
-  width: 30rem;
+  width: 100%;
   height: 40rem;
   box-shadow: 0px 0px 20px #000;
   transform: translate(-10%, -10%);
 
-  @media screen and (max-width: 90rem) {
+  @media screen and (max-width: 900px) {
     width: 50%;
     height: 30rem;
     transform: translate(0, 0);

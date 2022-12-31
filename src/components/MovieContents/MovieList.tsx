@@ -6,9 +6,6 @@ import MovieDetail from './MovieDetail';
 import MovieListItem from './MovieListItem';
 
 const Container = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   min-height: 100vh;
 `;
 
@@ -19,12 +16,17 @@ const Category = styled.h2`
   font-size: 2.5rem;
 `;
 
+const Keyword = styled(Category)``;
+
+const MovieListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 const EmptyResult = styled.div`
   color: white;
   font-size: 2.5rem;
 `;
-
-const Keyword = styled(Category)``;
 
 const categoryMatch = {
   popular: 'Poplular',
@@ -41,9 +43,11 @@ const MovieList = ({ movies, category, keyword }: props) => {
         {category && <Category>{categoryMatch[category]}</Category>}
         {keyword && <Keyword>{`Search results for "${keyword}"`}</Keyword>}
         {movies.length ? (
-          movies.map((movie) => (
-            <MovieListItem key={movie.id} movie={movie} setMovie={setMovie} />
-          ))
+          <MovieListContainer>
+            {movies.map((movie) => (
+              <MovieListItem key={movie.id} movie={movie} setMovie={setMovie} />
+            ))}
+          </MovieListContainer>
         ) : (
           <EmptyResult>Search result not found</EmptyResult>
         )}

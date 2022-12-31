@@ -16,7 +16,7 @@ const Container = styled.div`
   flex: 1;
   padding: 1rem;
 
-  @media screen and (max-width: 80rem) {
+  @media screen and (max-width: 800px) {
     order: 1;
     flex-basis: 100%;
     padding: 0 5rem;
