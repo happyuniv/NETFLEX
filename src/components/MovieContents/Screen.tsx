@@ -23,7 +23,7 @@ const Screen = () => {
         const data = await api.fetchCategory('popular');
         const movieData = data.results;
         const randomMovie =
-          movieData[Math.round(Math.random() * movieData.length)];
+          movieData[Math.floor(Math.random() * movieData.length)];
         setMovies(movieData);
         setScreenMovie(randomMovie);
         sessionStorage.setItem('popular', JSON.stringify(movieData));

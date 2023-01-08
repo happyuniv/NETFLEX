@@ -69,7 +69,10 @@ const ScreenContents = ({ movies, screenMovie, setScreenMovie }: props) => {
 
   const changeMovie = () => {
     setVideoId('');
-    const randomMovie = movies[Math.round(Math.random() * movies.length)];
+    let randomMovie = movies[Math.floor(Math.random() * movies.length)];
+    while (screenMovie.id === randomMovie.id) {
+      randomMovie = movies[Math.floor(Math.random() * movies.length)];
+    }
     setScreenMovie(randomMovie);
   };
 
