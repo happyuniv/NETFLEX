@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IMAGE_BASE_URL } from '../../api';
 import { MovieDataType } from '../../App';
+import Logo from '../../assets/logo.png';
 
 type props = {
   movie: MovieDataType;
@@ -133,13 +134,21 @@ const MovieDetail = ({ movie, setMovie }: props) => {
             X
           </Close>
           <PosterWrapper>
-            <Poster src={`${IMAGE_BASE_URL}/${movie.poster_path}`} />
+            <Poster
+              src={`${IMAGE_BASE_URL}/${movie.poster_path}`}
+              onError={(e) => {
+                e.currentTarget.src = Logo;
+              }}
+            />
           </PosterWrapper>
           <Detail>
             <Title>{movie.title}</Title>
-            <Year>{`${movie.release_date.split('-')[0]}.${
-              movie.release_date.split('-')[1]
-            }`}</Year>
+            <Year>
+              {movie.release_date &&
+                `${movie.release_date.split('-')[0]}.${
+                  movie.release_date.split('-')[1]
+                }`}
+            </Year>
             <Overview>{movie.overview}</Overview>
           </Detail>
         </Modal>

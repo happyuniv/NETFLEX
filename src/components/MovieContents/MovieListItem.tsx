@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { IMAGE_BASE_URL } from '../../api';
 import { MovieDataType } from '../../App';
+import Logo from '../../assets/logo.png';
 
 type props = {
   movie: MovieDataType;
@@ -44,11 +45,14 @@ const MovieListItem = ({ movie, setMovie }: props) => (
     <Container>
       <Poster
         src={`${IMAGE_BASE_URL}/${movie.poster_path}`}
+        onError={(e) => {
+          e.currentTarget.src = Logo;
+        }}
         onClick={() => {
           setMovie(movie);
         }}
       />
-      <Date>{movie.release_date.split('-')[0]}</Date>
+      <Date>{movie.release_date && movie.release_date.split('-')[0]}</Date>
       <Title>{movie.title}</Title>
     </Container>
   </>
